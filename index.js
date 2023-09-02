@@ -13,7 +13,7 @@ server.use(express.json())
 
 server.use('/api', indexRouter)
 
-server.get('/', (request, response, next) => {
+server.get('/', (req, res, next) => {
 
     response.send('bienvenido a mi servidor en /')
 })

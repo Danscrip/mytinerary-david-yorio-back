@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-mongoose.connect("mongodb+srv://dfyorio:0tLnOdSjyKXNCvfY@cluster0.t8zv5lc.mongodb.net/cities")
+mongoose.connect("mongodb+srv://dfyorio:0tLnOdSjyKXNCvfY@cluster0.t8zv5lc.mongodb.net/ciudades")
 .then(()=>{
     console.log("database connected");
 })

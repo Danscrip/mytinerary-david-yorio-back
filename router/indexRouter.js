@@ -1,25 +1,26 @@
-import  {Router} from 'express';
-import citiesController from '../controllers/citiesControllers.js';
-
-
-
-
-
-
-
-
+import { Router } from 'express';
+import citiesRouter from './citiesrouter.js';
+import cityRouter from './cityRouter.js';
+ import itinerariesRouter from './itinerariesRouter.js'
 const indexRouter = Router()
-const {getALLCities , getONECities, createONECities} = citiesController
 
-indexRouter.get('/',(request, response, next) => {
+
+
+
+
+
+
+
+
+
+
+indexRouter.get('/', (req, res, next) => {
     console.log(request);
 
     response.send('bienvenido a mi servidor en /api')
-    })
+})
+indexRouter.use('/cities', citiesRouter)
+indexRouter.use('/city', cityRouter)
+indexRouter.use('/itinerary', itinerariesRouter)
 
-    indexRouter.get('/cities',getALLCities) 
-    indexRouter.get('/cities/one',getONECities)
-    indexRouter.get('/cities/:param',getONECities) 
-    indexRouter.post('/cities',createONECities)
-
-    export default indexRouter
+export default indexRouter
