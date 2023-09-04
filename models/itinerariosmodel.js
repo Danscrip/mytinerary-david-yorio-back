@@ -8,7 +8,7 @@ const itinerariosSchema = Schema({
     name: {type: String, required: true} ,
     price: {type: Number , required: true},
     duration:{type: Number , required: true},
-    likes: {type: Number , required: true},
+    likes: {type: Number , default: 0},
     activities: {type: String, default: "No hay itinerarios para esta ciudad" },
     hashtags: {
         type: [String],  // Tipo de datos de arreglo de cadenas

@@ -1,16 +1,19 @@
-import city from '../models/city.js';
+import town from "../models/town.js";
+
+
+
 
 const cityController = {
     getALLCity: async (req, res, next) => {
 
             console.log(req.query);
-            let { country, city: cityParam } = req.query
+            let { country, city } = req.query
             let query = {}
 
 
 
-            if (cityParam) {
-                    query.city = { $regex: `^${cityParam.trim()}`, $options: "i" };
+            if (country) {
+                    query.country = { $regex: `^${country.trim()}`, $options: "i" };
             }
 
 
@@ -21,7 +24,7 @@ const cityController = {
 
 
             try {
-                    ciudades = await city.find(query)
+                    ciudades = await town.find(query)
 
 
             } catch (err) {
@@ -57,7 +60,7 @@ const cityController = {
 
             try {
 
-                    OneCitys = await city.findById(id)
+                    OneCitys = await town.findById(id)
             } catch (err) {
                     console.log(err)
                     success = false;
@@ -75,25 +78,25 @@ const cityController = {
     },
     createONECity: async (req, res, next) => {
             console.log(req.body);
-            let itinerarios;
+            let newCategory;
             let error = null
             let success = true;
 
             try {
 
 
-                    const itinnerarios = await city.create(req.body)
-                    res.status(201).json({newCategory: newCategory})
+                    const newCategory = await town.create(req.body)
+                   res.status(201).json({newCategory: newCategory})
 
-                    console.log(itinerarios);
+                    console.log(newCategory);
 
             } catch (err) {
                     res.status(500).json(err)
             }
 
 
-           /* res.json({
-                    res: itinerarios,
+          /* res.json({
+                    res: newCategory,
                     success,
                     error
 
@@ -110,7 +113,7 @@ const cityController = {
 
             const { id } = req.params
             try {
-                    ciudades = await city.findOneAndUpdate({ _id: id }, req.body, { new: true })
+                    ciudades = await town.findOneAndUpdate({ _id: id }, req.body, { new: true })
 
                     res.json({
                             respuesta: ciudades,
@@ -139,7 +142,7 @@ const cityController = {
 
 
             try {
-                    ciudades = await city.findOneAndDelete({ _id: id })
+                    ciudades = await town.findOneAndDelete({ _id: id })
 
                     res.json({
                             res: ciudades,

@@ -9,13 +9,13 @@ const itinerariesController = {
     getALLItinerary: async (req, res, next) => {
 
             console.log(req.query);
-            let { country, city: cityParam } = req.query
+            let { country, name } = req.query
             let query = {}
 
 
 
-            if (cityParam) {
-                    query.city = { $regex: `^${cityParam.trim()}`, $options: "i" };
+            if (country) {
+                    query.country = { $regex: `^${country.trim()}`, $options: "i" };
             }
 
 
@@ -26,7 +26,7 @@ const itinerariesController = {
 
 
             try {
-                    ciudades = await city.find(query)
+                    ciudades = await intinerariosmodel.find(query)
 
 
             } catch (err) {
@@ -62,7 +62,7 @@ const itinerariesController = {
 
             try {
 
-                    OneCitys = await city.findById(id)
+                    OneCitys = await intinerariosmodel.findById(id)
             } catch (err) {
                     console.log(err)
                     success = false;
@@ -115,7 +115,7 @@ const itinerariesController = {
 
             const { id } = req.params
             try {
-                    ciudades = await city.findOneAndUpdate({ _id: id }, req.body, { new: true })
+                    ciudades = await intinerariosmodel.findOneAndUpdate({ _id: id }, req.body, { new: true })
 
                     res.json({
                             respuesta: ciudades,
@@ -135,7 +135,7 @@ const itinerariesController = {
 
     },
 
-    deleteOneItineraryy: async (req, res, next) => {
+    deleteOneItinerary: async (req, res, next) => {
             const { id } = req.params
             let ciudades;
             let success = true;
@@ -144,7 +144,7 @@ const itinerariesController = {
 
 
             try {
-                    ciudades = await city.findOneAndDelete({ _id: id })
+                    ciudades = await intinerariosmodel.findOneAndDelete({ _id: id })
 
                     res.json({
                             res: ciudades,
