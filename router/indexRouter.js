@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import citiesRouter from './citiesrouter.js';
 import cityRouter from './cityRouter.js';
- import itinerariesRouter from './itinerariesRouter.js'
+import itinerariesRouter from './itinerariesRouter.js'
+import authRouter from './authRouter.js';
 const indexRouter = Router()
 
 
@@ -22,5 +23,5 @@ indexRouter.get('/', (req, res, next) => {
 indexRouter.use('/cities', citiesRouter)
 indexRouter.use('/city', cityRouter)
 indexRouter.use('/itinerary', itinerariesRouter)
-
+indexRouter.use('/auth', authRouter)
 export default indexRouter
